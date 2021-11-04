@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import "~bootstrap";
+@import "shared/variables";
+
+html, body {
+    font-family: $primary-font, sans-serif;
+}
