@@ -1,6 +1,11 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+{{ form_widget(form) }}
 
-    <input type="submit" value="{{ submitButtonText|default('Submit') }}">
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+  <input class="btn btn-primary"
+    type="submit"
+    value="{{ submitButtonText|default('Submit') }}"
+    formnovalidate />
+</div>
 
 {{ form_end(form) }}
