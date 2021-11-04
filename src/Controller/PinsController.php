@@ -22,6 +22,25 @@ class PinsController extends AbstractController
         return $this->render('pins/index.html.twig', compact('pins'));
     }
 
+    #[Route('/pins/create', name: 'app_pins_create', methods: ['GET','POST'])]
+    public function create(Request $request, EntityManagerInterface $em): Response
+    {
+        $pin = new Pin;
+        $form = $this->createForm(PinType::class, $pin);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $em->persist($pin);
+            $em->flush();
+
+            return $this->redirectToRoute('app_home');
+        }
+
+        return $this->render('pins/create.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
     #[Route('/pins/{id<[0-9]+>}', name: 'app_pins_show', methods: ['GET'])]
     public function show(Pin $pin): Response
     {
@@ -48,7 +67,7 @@ class PinsController extends AbstractController
         ]);
     }
 
-    #[Route('/pins/{id<[0-9]+>}/delete', name: 'app_pins_delete', methods: ['DELETE'])]
+    #[Route('/pins/{id<[0-9]+>}', name: 'app_pins_delete', methods: ['DELETE'])]
     public function delete(Pin $pin, Request $request, EntityManagerInterface $em): Response
     {
         if($this->isCsrfTokenValid('pin_deletion_' . $pin->getId(), $request->request->get('csrf_token')))
@@ -57,24 +76,5 @@ class PinsController extends AbstractController
             $em->flush();
         }
         return $this->redirectToRoute('app_home');
-    }
-
-    #[Route('/pins/create', name: 'app_pins_create', methods: ['GET','POST'])]
-    public function create(Request $request, EntityManagerInterface $em): Response
-    {
-        $pin = new Pin;
-        $form = $this->createForm(PinType::class, $pin);
-        $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid())
-        {
-            $em->persist($pin);
-            $em->flush();
-
-            return $this->redirectToRoute('app_home');
-        }
-
-        return $this->render('pins/create.html.twig', [
-            'form' => $form->createView()
-        ]);
     }
 }
