@@ -1,22 +1,42 @@
 {% extends 'layouts/base.html.twig' %}
 
-{% block title %}{{ pin.title }}{% endblock %}
+{% block title %}
+	{{ pin.title }}
+{% endblock %}
 
 {% block body %}
+	<div class="row">
+		<div class="col-md-6 mx-auto">
+			<article class="pin bg-white rounded shadow">
+				<div class="mb-2 mw-100 overflow-hidden">
+					<img class="w-100 rounded-top" src="{{ (pin.imageName ? vich_uploader_asset(pin) : asset('build/images/placeholder.jpg')) |imagine_filter('squared_thumbnail_medium') }}" alt="{{ pin.title }}">
+				</div>
+				<div class="p-2">
+					<h5>
+						{{ pin.title }}
+					</h5>
+					<p>{{ pin.description|u.truncate(30, '...', false) }}</p>
+					<p class="text-muted">Submitted
+                        <time datetime="{{ pin.createdAt|date('Y-m-d H:i:s') }}">
+						    {{ pin.createdAt|ago }}</p>
+                        </time>
 
-    <article>
-        <h2>{{ pin.title }}</h2>
-        <p>{{ pin.description }}</p>
-    </article>
+					<div>
+						<a class="btn btn-info" href="{{ path('app_pins_edit', {id: pin.id}) }}">Edit</a>
+						<a class="btn btn-danger" href="#" onclick="event.preventDefault(); confirm('Are you sure ?')  
+                        &&
+						document.getElementById('js-pin-delete-form').submit();">Delete</a>
+					</div>
+				</div>
+			</article>
 
-<a href="{{ path('app_pins_edit', {id: pin.id}) }}">Edit</a>
-<a href="#" onclick="event.preventDefault(); confirm('Are you sure ?')  && 
-document.getElementById('js-pin-delete-form').submit();">Delete</a>
-<a href="{{ path('app_home') }}">Index</a>
 
-<form id="js-pin-delete-form" action="{{ path('app_pins_delete', {id: pin.id}) }}" method="post" style="display:none">
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="hidden" name="csrf_token" value="{{ csrf_token('pin_deletion_' ~ pin.id) }}">
-</form>
+			<form id="js-pin-delete-form" action="{{ path('app_pins_delete', {id: pin.id}) }}" method="post" style="display:none">
+				<input type="hidden" name="_method" value="DELETE">
+				<input type="hidden" name="csrf_token" value="{{ csrf_token('pin_deletion_' ~ pin.id) }}">
+			</form>
+
+		</div>
+	</div>
 
 {% endblock %}
