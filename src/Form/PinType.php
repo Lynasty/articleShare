@@ -20,7 +20,7 @@ class PinType extends AbstractType
                 'label' => 'Image (JPG or PNG file)',
                 'required' => false,
                 'allow_delete' => true,
-                'delete_label' => 'Delete Image ?',
+                'delete_label' => 'Delete current image',
                 'download_uri' => false,
                 'imagine_pattern' => 'squared_thumbnail_small'
             ])
