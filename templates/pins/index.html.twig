@@ -23,20 +23,21 @@
 									<a class="text-decoration-none" href="{{ path('app_pins_show', {id: pin.id}) }}">{{ pin.title }}</a>
 								</h5>
 								<p>{{ pin.description|u.truncate(30, '...', false) }}</p>
-								<p class="text-muted">Submitted
-									{{ pin.createdAt|ago }}</p>
-							</div>
-						</article>
-					</div>
-				{% endfor %}
-			</div>
-		{% endfor %}
-	{% else %}
-		<p class="h1 text-center">No pins yet.
-			<a href="{{ path('app_pins_create') }}">Create a Pin</a>
-		</p>
+								<p class="text-muted">Submitted by
+									{{ pin.user.getFullName }}
+									<time datetime="{{ pin.createdAt|date('Y-m-d H:i:s') }}">
+										({{ pin.createdAt|ago }})</p>
+								</p>
+							</time>
+						</div>
+					</article>
+				</div>
+			{% endfor %}
+		</div>
+	{% endfor %}
+{% else %}
+	<p class="h1 text-center">No pins yet.
+		<a href="{{ path('app_pins_create') }}">Create a Pin</a>
+	</p>
 
-	{% endif %}
-
-
-{% endblock %}
+{% endif %}{% endblock %}
