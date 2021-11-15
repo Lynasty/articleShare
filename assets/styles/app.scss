@@ -7,6 +7,15 @@ body {
   font-family: $primary-font, sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
+
+.alert {
+  text-align: center;
+  border-radius: 0;
+}
+
 .vich-image {
   img {
     @extend .rounded;

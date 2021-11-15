@@ -26,7 +26,7 @@ npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
-###> custom ###
+###> custom app ###
 /public/uploads/
 ###< end custom ###
 

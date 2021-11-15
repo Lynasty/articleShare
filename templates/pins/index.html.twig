@@ -22,7 +22,7 @@
 								<h5>
 									<a class="text-decoration-none" href="{{ path('app_pins_show', {id: pin.id}) }}">{{ pin.title }}</a>
 								</h5>
-								<p>{{ pin.description|u.truncate(30, '...', false) }}</p>
+								<!--<p>{{ pin.description|u.truncate(30, '...', false) }}</p>-->
 								<p class="text-muted">Submitted by
 									{{ pin.user.getFullName }}
 									<time datetime="{{ pin.createdAt|date('Y-m-d H:i:s') }}">

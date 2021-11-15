@@ -15,7 +15,7 @@
 					<h1>
 						{{ pin.title }}
 					</h1>
-					<p>{{ pin.description|u.truncate(30, '...', false) }}</p>
+					<p class="text-break">{{ pin.description|u.truncate(30, '...', false) }}</p>
 					<p class="text-muted">Submitted by
 						{{ pin.user.getFullName }}
 						<time datetime="{{ pin.createdAt|date('Y-m-d H:i:s') }}">
