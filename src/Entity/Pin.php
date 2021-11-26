@@ -19,6 +19,9 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 class Pin
 {
     use Timestampable;
+
+    public const NUM_ITEMS_PER_PAGE = 10;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
