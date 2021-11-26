@@ -1,12 +1,25 @@
 <div class="container">
-  <footer class="py-3 my-4">
-    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
-    </ul>
-    <p class="text-center text-muted">&copy; 2021 Company, Inc</p>
-  </footer>
+	<footer class="py-3 my-4">
+		<ul class="nav justify-content-center border-bottom pb-3 mb-3">
+			<li class="nav-item">
+				<a href="{{ path('app_home') }}" class="nav-link px-2 text-muted">Home</a>
+			</li>
+			{% if app.user %}
+				<li class="nav-item">
+					<a href="{{ path('app_account') }}" class="nav-link px-2 text-muted">Account</a>
+				</li>
+				<li class="nav-item">
+					<a href="{{ path('app_logout') }}" class="nav-link px-2 text-muted">Logout</a>
+				</li>
+			{% else %}
+				<li class="nav-item">
+					<a href="{{ path('app_login') }}" class="nav-link px-2 text-muted">Login</a>
+				</li>
+				<li class="nav-item">
+					<a href="{{ path('app_register') }}" class="nav-link px-2 text-muted">Register</a>
+				</li>
+			{% endif %}
+		</ul>
+		<p class="text-center text-muted">&copy; 2021 Company, Inc</p>
+	</footer>
 </div>
